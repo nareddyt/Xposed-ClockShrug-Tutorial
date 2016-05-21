@@ -9,13 +9,13 @@
 
         <meta-data
                 android:name="xposedmodule"
-                android:value="true" />
+                android:value="true"/>
         <meta-data
                 android:name="xposeddescription"
-                android:value="Teju's first Xposed module: Adds a shrug to the clock" />
+                android:value="Teju's first Xposed module: Adds a shrug to the clock"/>
         <meta-data
                 android:name="xposedminversion"
-                android:value="53" />
+                android:value="53"/>
 
     </application>
 

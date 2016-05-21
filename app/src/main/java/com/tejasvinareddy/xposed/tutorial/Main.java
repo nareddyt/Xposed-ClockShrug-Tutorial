@@ -26,18 +26,18 @@ public class Main implements IXposedHookLoadPackage {
                 + "Clock", lpparam.classLoader, "updateClock", new
                 XC_MethodHook(XCallback.PRIORITY_HIGHEST) {
 
-            @Override
-            protected void afterHookedMethod(MethodHookParam param)
-                    throws Throwable {
-                super.afterHookedMethod(param);
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param)
+                            throws Throwable {
+                        super.afterHookedMethod(param);
 
-                // Update the clock's text with a shrug
-                TextView tv = (TextView) param.thisObject;
-                String newText = tv.getText() + " ¯\\_(ツ)_/¯";
-                tv.setText(newText);
-                XposedBridge.log("[TUTORIAL] Set clock to " + newText);
-            }
-        });
+                        // Update the clock's text with a shrug
+                        TextView tv = (TextView) param.thisObject;
+                        String newText = tv.getText() + " ¯\\_(ツ)_/¯";
+                        tv.setText(newText);
+                        XposedBridge.log("[TUTORIAL] Set clock to " + newText);
+                    }
+                });
 
         XposedBridge.log("[TUTORIAL] Callback for Clock's updateClock method " +
                 "is set up!");
