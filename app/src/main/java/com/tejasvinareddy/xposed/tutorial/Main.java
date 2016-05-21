@@ -14,15 +14,14 @@ public class Main implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam)
             throws Throwable {
         // Called every time a package is loaded
-        XposedBridge.log("[TUTORIAL] Loaded app " + lpparam.packageName);
-
-        // We only want the system UI package
         if (!lpparam.packageName.equals("com.android.systemui")) {
+            // We only want the system UI package
             return;
         }
         XposedBridge.log("[TUTORIAL] We are in SystemUI!");
 
-        // Hook the updateClock method in the Clock class
+        // Set up callback: Hook the updateClock method in the Clock class
+        // CHECKME use of high priority
         XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.policy."
                 + "Clock", lpparam.classLoader, "updateClock", new
                 XC_MethodHook(XCallback.PRIORITY_HIGHEST) {
@@ -39,5 +38,8 @@ public class Main implements IXposedHookLoadPackage {
                 XposedBridge.log("[TUTORIAL] Set clock to " + newText);
             }
         });
+
+        XposedBridge.log("[TUTORIAL] Callback for Clock's updateClock method " +
+                "is set up!");
     }
 }
